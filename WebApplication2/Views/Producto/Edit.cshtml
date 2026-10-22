@@ -1,0 +1,67 @@
+﻿
+@model WebApplication1.Models.ProductoModel
+
+@{
+    ViewBag.Title = "Editar producto";
+}
+
+<h2>Editar producto</h2>
+
+@using (Html.BeginForm("Edit", "Producto", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Nombre, "Nombre")
+        @Html.TextBoxFor(m => m.Nombre,
+            new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Nombre, "",
+            new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Descripcion, "Descripcion")
+        @Html.TextAreaFor(m => m.Descripcion,
+            new { @class = "form-control", rows = 3 })
+        @Html.ValidationMessageFor(m => m.Descripcion, "",
+            new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Precio, "Precio")
+        @Html.TextBoxFor(m => m.Precio,
+            new
+                 {
+                     @class = "form-control",
+                     type = "number",
+                step = "0.01",
+                     min = "0.01"
+                 })
+        @Html.ValidationMessageFor(m => m.Precio, "",
+            new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Stock, "Stock")
+        @Html.TextBoxFor(m => m.Stock,
+            new
+                 {
+                     @class = "form-control",
+                     type = "number",
+                min = "0"
+                 })
+        @Html.ValidationMessageFor(m => m.Stock, "",
+            new { @class = "text-danger" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Guardar cambios
+    </button>
+
+    @Html.ActionLink("Cancelar", "Index", "Producto",
+        null, new { @class = "btn btn-default" })
+}

@@ -1,0 +1,35 @@
+﻿
+@model WebApplication1.Models.ProductoModel
+
+@{
+    ViewBag.Title = "Detalles del producto";
+}
+
+<h2>Detalles del producto</h2>
+
+<dl class="dl-horizontal">
+    <dt>Id</dt>
+    <dd>@Model.Id</dd>
+
+    <dt>Nombre</dt>
+    <dd>@Model.Nombre</dd>
+
+    <dt>Descripcion</dt>
+    <dd>@Model.Descripcion</dd>
+
+    <dt>Precio</dt>
+    <dd>@Model.Precio.ToString("F2")</dd>
+
+    <dt>Stock</dt>
+    <dd>@Model.Stock</dd>
+</dl>
+
+<p>
+    @Html.ActionLink("Editar", "Edit",
+        new { id = Model.Id },
+        new { @class = "btn btn-warning" })
+
+    @Html.ActionLink("Volver al listado", "Index",
+        "Producto", null,
+        new { @class = "btn btn-default" })
+</p>
